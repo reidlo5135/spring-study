@@ -1,0 +1,13 @@
+org\zerock\domain\PageDTO.class
+org\zerock\service\BoardServiceImpl.class
+org\zerock\domain\Tickets.class
+org\zerock\domain\BoardVO.class
+org\zerock\controller\SampleController.class
+org\zerock\mapper\BoardMapper.class
+org\zerock\domain\SampleVO.class
+org\zerock\domain\Criteria.class
+org\zerock\controller\HomeController.class
+org\zerock\domain\ReplyVO.class
+org\zerock\service\BoardService.class
+org\zerock\mapper\ReplyMapper.class
+org\zerock\controller\BoardController.class

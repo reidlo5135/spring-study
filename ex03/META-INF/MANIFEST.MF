@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ex03
+Bundle-SymbolicName: ex03
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-15
+Automatic-Module-Name: ex03
+Export-Package: org.zerock.controller,
+ org.zerock.domain,
+ org.zerock.mapper,
+ org.zerock.persistence,
+ org.zerock.service
