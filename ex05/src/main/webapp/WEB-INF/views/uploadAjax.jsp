@@ -1,15 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+	.uploadResult {
+		width: 100%;
+		background-color: gray;
+	}
+	
+	.uploadResult ul {
+		display: flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.uploadResult ul li {
+		list-style: none;
+		padding: 10px;
+	}
+	
+	.uploadResult ul li img {
+		width: 20px;
+	}
+</style>
 </head>
 <body>
 	<div class="uploadDiv">
 		<input type="file" name="uploadFile" multiple />
+	</div>
+	
+	<div class="uploadResult">
+		<ul>
+		
+		</ul>
 	</div>
 	
 	<button id="uploadBtn">Upload</button>
@@ -32,6 +62,8 @@
 				}
 				return true;
 			}
+			
+			var cloneObj = $(".uploadDiv").clone();
 			
 			$("#uploadBtn").on("click", function(e) {
 				var formData = new FormData();
@@ -57,11 +89,31 @@
 					contentType : false,
 					data : formData,
 					type : 'POST',
+					dataType : 'json',
 					success : function(result) {
-						alert("Uploaded");
+						console.log(result);
+						
+						showUploadedFile(result);
+						
+						$(".uploadDiv").html(cloneObj.html());
 					}
 				});
 			});
+			
+			var uploadResult = $(".uploadResult ul");
+			
+			function showUploadedFile(uploadResultArr) {
+				var str = "";
+				
+				$(uploadResultArr).each(function(i, obj) {
+					if(!obj.image) {
+						str += "<li><img src='${path}/resources/img/bulls.png'>" + obj.fileName + "</li>";
+					} else {
+						str += "<li>" + obj.fileName + "</li>";
+					}
+				});
+				uploadResult.append(str);
+			}
 		});
 	</script>
 </body>
