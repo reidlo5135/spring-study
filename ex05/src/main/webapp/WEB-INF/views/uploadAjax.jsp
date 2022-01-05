@@ -93,128 +93,100 @@
 			}, 1000);
 		});
 
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 
-							var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-							var maxSize = 5242880;
+			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+			var maxSize = 5242880;
+	
+			function checkExtension(fileName, fileSize) {
+				if (fileSize >= maxSize) {
+					alert("파일 사이즈 초과");
+					return false;
+				}
 
-							function checkExtension(fileName, fileSize) {
-								if (fileSize >= maxSize) {
-									alert("파일 사이즈 초과");
-									return false;
-								}
+				if (regex.test(fileName)) {
+					alert("해당 종류의 파일은 업로드할 수 없습니다.");
+					return false;
+				}
+				return true;
+			}
 
-								if (regex.test(fileName)) {
-									alert("해당 종류의 파일은 업로드할 수 없습니다.");
-									return false;
-								}
-								return true;
-							}
+			var cloneObj = $(".uploadDiv").clone();
 
-							var cloneObj = $(".uploadDiv").clone();
+			$("#uploadBtn").on("click", function(e) {
+				var formData = new FormData();
+				var inputFile = $("input[name='uploadFile']");
+				var files = inputFile[0].files;
+				console.log(files);
 
-							$("#uploadBtn")
-									.on(
-											"click",
-											function(e) {
-												var formData = new FormData();
+			for (var i = 0; i < files.length; i++) {
 
-												var inputFile = $("input[name='uploadFile']");
+				if (!checkExtension(files[i].name, files[i].size)) {
+					return false;
+				}
+									
+				formData.append("uploadFile",files[i]);
+			}
+			$.ajax({
+				url : '${path}/uploadAjaxAction',
+				processData : false,
+				contentType : false,
+				data : formData,
+				type : 'POST',
+				dataType : 'json',
+				success : function(result) {
+					console.log(result);
+					showUploadedFile(result);
+					$(".uploadDiv").html(cloneObj.html());
+				}
+			});
+		});
 
-												var files = inputFile[0].files;
+		var uploadResult = $(".uploadResult ul");
 
-												console.log(files);
+		function showUploadedFile(uploadResultArr) {
+				var str = "";
+				$(uploadResultArr).each(function(i, obj) {
+					if (!obj.image) {
+						
+						var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+						
+						var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
+						str += "<li><div><a href='${path}/download?fileName=" + fileCallPath + "'>" 
+							+ "<img src='${path}/resources/img/bulls.png'>" + obj.fileName + "</a>"
+							+ "<span data-file=\'" + fileCallPath +"\' data-type= 'file' > x </span></div></li>";
+					} else {
+						/* str += "<li>" + obj.fileName + "</li>"; */
+						var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid	+ "_" + obj.fileName);
 
-												for (var i = 0; i < files.length; i++) {
+						var originPath = obj.uploadPath + "\\" + obj.uuid + "_" + obj.fileName;
+						
+						originPath = originPath.replace(new RegExp(/\\/g), "/");
 
-													if (!checkExtension(
-															files[i].name,
-															files[i].size)) {
-														return false;
-													}
-
-													formData.append(
-															"uploadFile",
-															files[i]);
-												}
-
-												$
-														.ajax({
-															url : '/reidlo/uploadAjaxAction',
-															processData : false,
-															contentType : false,
-															data : formData,
-															type : 'POST',
-															dataType : 'json',
-															success : function(
-																	result) {
-																console
-																		.log(result);
-
-																showUploadedFile(result);
-
-																$(".uploadDiv")
-																		.html(
-																				cloneObj
-																						.html());
-															}
-														});
-											});
-
-							var uploadResult = $(".uploadResult ul");
-
-							function showUploadedFile(uploadResultArr) {
-								var str = "";
-
-								$(uploadResultArr)
-										.each(
-												function(i, obj) {
-													if (!obj.image) {
-														var fileCallPath = encodeURIComponent(obj.uploadPath
-																+ "/"
-																+ obj.uuid
-																+ "_"
-																+ obj.fileName);
-
-														str += "<li><a href='${path}/download?fileName="
-																+ fileCallPath
-																+ "'>"
-																+ "<img src='${path}/resources/img/bulls.png'>"
-																+ obj.fileName
-																+ "</a></li>";
-													} else {
-														/* str += "<li>" + obj.fileName + "</li>"; */
-
-														var fileCallPath = encodeURIComponent(obj.uploadPath
-																+ "/s_"
-																+ obj.uuid
-																+ "_"
-																+ obj.fileName);
-
-														var originPath = obj.uploadPath
-																+ "\\"
-																+ obj.uuid
-																+ "_"
-																+ obj.fileName;
-
-														originPath = originPath
-																.replace(
-																		new RegExp(
-																				/\\/g),
-																		"/");
-
-														str += "<li><a href=\"javascript:showImage(\'"
-																+ originPath
-																+ "\')\"><img src='${path}/display?fileName="
-																+ fileCallPath
-																+ "'></a></li>";
-													}
-												});
-								uploadResult.append(str);
-							}
-						});
+						str += "<li><a href=\"javascript:showImage(\'" + originPath	+ "\')\">"
+							+ "<img src='${path}/display?fileName=" + fileCallPath + "'></a>"
+							+ "<span data-file=\'" + fileCallPath + "\' data-type='image'> x </span></li>";
+					}
+				});
+				uploadResult.append(str);
+		}
+		
+		$(".uploadResult").on("click", "span", function(e) {
+			var targetFile = $(this).data("file");
+			var type = $(this).data("type");
+			console.log(targetFile);
+			
+			$.ajax({
+				url : '${path}/deleteFile',
+				data : {fileName : targetFile, type : type},
+				dataType : 'text',
+				type : 'POST',
+				success : function(result) {
+					alert(result);
+				}
+			});
+		});
+	});
 	</script>
 </body>
 </html>
