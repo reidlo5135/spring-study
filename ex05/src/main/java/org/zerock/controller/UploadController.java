@@ -153,6 +153,7 @@ public class UploadController {
 		File file = new File("c:\\upload\\" + fileName);
 		
 		log.info("file : " + file);
+		log.info("Second fileName : " + fileName);
 		
 		ResponseEntity<byte[]> result = null;
 		
