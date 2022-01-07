@@ -406,7 +406,10 @@
 			
 			var liObj = $(this);
 			
-			var path = encodeURIComponent(liObj.data("path") + "/" + liObj.data("uuid") + "_" + liObj.data("fileName"));
+			console.log(liObj);
+			console.log(liObj.data("filename"));
+			
+			var path = encodeURIComponent(liObj.data("path") + "/" + liObj.data("uuid") + "_" + liObj.data("filename"));
 			
 			if(liObj.data("type")) {
 				showImage(path.replace(new RegExp(/\\/g), "/"));
@@ -424,6 +427,13 @@
 			.html("<img src='${path}/display?fileName=" + fileCallPath + "'>")
 			.animate({width:'100%', height:'100%'}, 1000);
 		}
+		
+		$(".bigPictureWrapper").on("click", function(e) {
+			$(".bigPicture").animate({width: '0%', height: '0%'}, 1000);
+			setTimeout(function() {
+				$(".bigPictureWrapper").hide();
+			}, 1000);
+		});
 	</script>
 </body>
 </html>
