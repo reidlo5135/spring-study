@@ -111,6 +111,9 @@
 						
 						<div class="panel panel-heading">Files</div>
 						<div class="panel-body">
+							<div class="form-group uploadDiv">
+								<input type="file" name="uploadFile" multiple />
+							</div>							
 							<div class="uploadResult">
 								<ul></ul>
 							</div>

@@ -9,6 +9,58 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.uploadResult {
+		width: 100%;
+		background-color: gray;
+	}
+	
+	.uploadResult ul {
+		display: flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.uploadResult ul li {
+		list-style: none;
+		padding: 10px;
+		align-content: center;
+		text-align: center;
+	}
+	
+	.uploadResult ul li img {
+		width: 100px;
+	}
+	
+	.uploadResult ul li span {
+		color: white;
+	}
+	
+	.bigPictureWrapper {
+		position: absolute;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		top: 0%;
+		width: 100%;
+		height: 100%;
+		background-color: gray;
+		z-index: 100;
+		background: rgba(255, 255, 255, 0.5);
+	}
+	
+	.bigPicture {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;	
+	}
+	
+	.bigPicture img {
+		width: 600px;
+	}
+</style>
 </head>
 <body id="page-top">
 
@@ -17,6 +69,9 @@
 		<c:import url="../includes/sidebar.jsp" />
 		
 		<div id="content-wrapper" class="d-flex flex-column">
+			<div class="bigPictureWrapper">
+				<div class="bigPicture"></div>
+			</div>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
@@ -58,6 +113,13 @@
 							</form>
 						</div>
 						<!-- end panel body -->
+						
+						<div class="panel panel-heading">Files</div>
+						<div class="panel-body">
+							<div class="uploadResult">
+								<ul></ul>
+							</div>
+						</div>
 					</div>
 					<!-- end panel-body -->
 				</div>
@@ -94,6 +156,39 @@
 				}
 				formObj.submit();
 			});
+			
+			(function() {
+				var bno = '<c:out value="${board.bno}" />';
+				
+				$.getJSON("${path}/board/getAttachList", {bno : bno}, function(arr) {
+					console.log(arr);
+					
+					var str = "";
+					
+					$(arr).each(function(i, attach) {
+						if(attach.fileType) {
+							fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+							str += "<li data-path='" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "' data-type='" + attach.fileType + "' ><div>";
+							str += "<span>" + attach.fileName + "</span>";
+							str += "<button type='button' data-file=\'" + fileCallPath + "\' data-type='image'";
+							str += "class= 'btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+							str += "<img src='${path}/display?fileName=" + fileCallPath + "'>";
+							str += "</div>";
+							str += "</li>";
+						}else {
+							str += "<li data-path='" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "' data-type='" + attach.fileType + "' ><div>";
+							str += "<span>" + attach.fileName + "</span>";
+							str += "<button type='button' data-file=\'" + fileCallPath + "\' data-type='image'";
+							str += "class= 'btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+							str += "<img src='${path}/resources/img/bulls.png'>";
+							str += "</div>";
+							str += "</li>";
+						}
+					});
+					
+					$(".uploadResult ul").html(str);
+				});				
+			})();
 		});
 	</script>
 </body>
