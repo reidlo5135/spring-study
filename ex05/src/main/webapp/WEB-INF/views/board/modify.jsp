@@ -125,6 +125,7 @@
 				</div>
 				<!-- end panel -->
 			</div>
+			<!-- footer.jsp -->
 		<c:import url="../includes/footer.jsp" />
 		</div>
 	</div>
