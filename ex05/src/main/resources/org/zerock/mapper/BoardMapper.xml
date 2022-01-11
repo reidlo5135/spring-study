@@ -81,7 +81,7 @@
 		SET title = #{title},
 		content = #{content},
 		writer = #{writer},
-		updateDate = sysdate()
+		updateDate = sysdate
 		WHERE bno = #{bno}
 	</update>
 	

@@ -92,7 +92,7 @@ public class UploadController {
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		log.info("upload ajax post.........");
 		
-		List<AttachFileDTO> list = new ArrayList<AttachFileDTO>();
+		List<AttachFileDTO> list = new ArrayList<>();
 		String uploadFolder = "C:\\upload";
 		
 		String uploadFolderPath = getFolder();
@@ -156,14 +156,21 @@ public class UploadController {
 		log.info("Second fileName : " + fileName);
 		
 		ResponseEntity<byte[]> result = null;
+		int count = 0;
 		
 		try {
 			HttpHeaders header = new HttpHeaders();
 			
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			System.out.println("DISPLAY RESULT [" + count + "] :" + result);
+			System.out.println("DISPLAY HEADER [" + count + "] :" + header);
+			System.out.println("DISPLAY FILE [" + count + "] :" + file.toString() + " PATH : " + file.toPath());			
 		} catch (IOException e) {
+			count++;
 			e.printStackTrace();
+			System.out.println("CATCH DISPLAY RESULT [" + count + "] :" + result);
+			System.out.println("CATCH DISPLAY FILE [" + count + "] :" + file.toString() + " PATH : " + file.toPath());
 		}
 		
 		return result;

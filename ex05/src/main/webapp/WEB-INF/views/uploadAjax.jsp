@@ -80,6 +80,7 @@
 	<script type="text/javascript">
 	
 		function showImage(fileCallPath) {
+			alert(fileCallPath);
 			$(".bigPictureWrapper").css("display", "flex").show();
 			$(".bigPicture")
 			.html("<img src='${path}/display?fileName=" + encodeURI(fileCallPath) + "'>")

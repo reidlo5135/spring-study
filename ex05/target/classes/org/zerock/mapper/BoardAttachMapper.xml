@@ -18,6 +18,10 @@
 		SELECT * FROM tbl_attach WHERE bno = #{bno}
 	</select>
 	
+	<select id="getOldFiles" resultType="org.zerock.domain.BoardAttachVO">
+		SELECT * FROM tbl_attach WHERE uploadPath = to_char(SYSDATE -1, 'yyyy\mm\dd')
+	</select>
+	
 	<delete id="deleteAll">
 		DELETE tbl_attach WHERE bno = #{bno}
 	</delete>
