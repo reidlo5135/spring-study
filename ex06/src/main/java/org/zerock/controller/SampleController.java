@@ -25,4 +25,9 @@ public class SampleController {
 	public void doAdmin() {
 		log.info("admin only");
 	}
+	
+	@GetMapping("/main")
+	public void doMain() {
+		log.info("main page");
+	}
 }
