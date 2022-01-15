@@ -30,4 +30,9 @@ public class SampleController {
 	public void doMain() {
 		log.info("main page");
 	}
+	
+	@GetMapping("/public")
+	public void doPublic() {
+		log.info("public");
+	}
 }
