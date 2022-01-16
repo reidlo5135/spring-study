@@ -35,4 +35,9 @@ public class SampleController {
 	public void doPublic() {
 		log.info("public");
 	}
+	
+	@GetMapping("/minor")
+	public void doMinor() {
+		log.info("minor");
+	}
 }
