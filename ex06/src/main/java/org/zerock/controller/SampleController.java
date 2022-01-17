@@ -12,13 +12,17 @@ import lombok.extern.log4j.Log4j;
 public class SampleController {
 
 	@GetMapping("/all")
-	public void doAll() {
+	public String doAll() {
 		log.info("do all can access everybody");
+		
+		return "/all";
 	}
 	
 	@GetMapping("/member")
-	public void doMember() {
+	public String doMember() {
 		log.info("logined member");
+		
+		return "/member";
 	}
 	
 	@GetMapping("/admin")
