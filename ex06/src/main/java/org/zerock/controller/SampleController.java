@@ -26,8 +26,10 @@ public class SampleController {
 	}
 	
 	@GetMapping("/admin")
-	public void doAdmin() {
+	public String doAdmin() {
 		log.info("admin only");
+		
+		return "/admin";
 	}
 	
 	@GetMapping("/main")
