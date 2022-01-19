@@ -26,4 +26,9 @@ public class MemberMapperTests {
 		
 		vo.getAuthList().forEach(authVO -> log.info(authVO));
 	}
+	
+	@Test
+	public void testModify() {
+		log.info("--------------");
+	}
 }
