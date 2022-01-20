@@ -15,10 +15,10 @@
 	
 	<form method="post" action="${path}/login">
 		<div>
-			<input type="text" name="username" value="admin" />
+			<input type="text" name="username"/>
 		</div>
 		<div>
-			<input type="password" name="password" value="admin" />
+			<input type="password" name="password"/>
 		</div>
 		<div>
 			<input type="submit" />
