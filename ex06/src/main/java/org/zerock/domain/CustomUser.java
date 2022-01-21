@@ -11,7 +11,8 @@ import lombok.Getter;
 
 @Getter
 public class CustomUser extends User{
-	private static final long serialVersionID = 1L;
+	
+	private static final long serialVersionUID = 1L;
 	
 	private MemberVO member;
 	
@@ -19,10 +20,19 @@ public class CustomUser extends User{
 		super(username, password, authorities);
 	}
 	
+//	public CustomUser(MemberVO vo) {
+//		super(vo.getUserid(), vo.getUserpw(), vo.getAuthList().stream()
+//				.map(auth -> new SimpleGrantedAuthority(auth.getAuth())).collect(Collectors.toList()));
+//		
+//		this.member = vo;
+//	}
 	public CustomUser(MemberVO vo) {
-		super(vo.getUserid(), vo.getUserpw(), vo.getAuthList().stream()
-				.map(auth -> new SimpleGrantedAuthority(auth.getAuth())).collect(Collectors.toList()));
-		
+		// 아이디, 비밀번호, 권한 list
+		super(vo.getUserid(), vo.getUserpw(), vo.getAuthList()
+					.stream()
+					.map(auth -> new SimpleGrantedAuthority(auth.getAuth()))
+					.collect(Collectors.toList()));
+
 		this.member = vo;
 	}
 }

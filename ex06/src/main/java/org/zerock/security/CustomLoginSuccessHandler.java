@@ -43,7 +43,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 			return;
 		}
 		
-		response.sendRedirect(path + "/");
+		response.sendRedirect(path + "/sample/all");
 	}
 
 }
