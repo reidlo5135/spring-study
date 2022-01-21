@@ -7,7 +7,8 @@
 
 	<bean id="customAccessDenied" class="org.zerock.security.CustomAccessDeniedHandler" />
 	<bean id="customLoginSuccess" class="org.zerock.security.CustomLoginSuccessHandler"/>
-	<!-- <bean id="customPasswordEncoder" class="org.zerock.security.CustomNoOpPasswordEncoder"/> -->
+	<bean id="customLoginFailure" class="org.zerock.security.CustomLoginFailureHandler"/>
+	<bean id="customPasswordEncoder" class="org.zerock.security.CustomNoOpPasswordEncoder"/>
  	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<bean id="customUserDetailsService" class="org.zerock.security.CustomUserDetailsService"/>
 
@@ -18,7 +19,10 @@
 		<!-- <security:access-denied-handler error-page="/accessError" /> -->
 		<security:access-denied-handler ref="customAccessDenied" />
 		
-		<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
+		<security:form-login login-page="/customLogin" 
+			authentication-success-handler-ref="customLoginSuccess"
+			authentication-failure-handler-ref="customLoginFailure"
+		/>
 		
 		<security:logout logout-url="/customLogout" invalidate-session="true" />
 		
@@ -32,8 +36,8 @@
 				authorities-by-username-query="select userid, auth from tbl_member_auth where userid = ?" /> -->
 				<!-- <security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
 				<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER, ROLE_ADMIN"/> -->
-			<!-- <security:password-encoder ref="customPasswordEncoder" /> -->
-			<security:password-encoder ref="bcryptPasswordEncoder" />
+				<security:password-encoder ref="customPasswordEncoder" />
+<!-- 			<security:password-encoder ref="bcryptPasswordEncoder" /> -->
 		</security:authentication-provider>
 	</security:authentication-manager>
 	

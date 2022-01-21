@@ -31,19 +31,4 @@ public class SampleController {
 		
 		return "/admin";
 	}
-	
-	@GetMapping("/main")
-	public void doMain() {
-		log.info("main page");
-	}
-	
-	@GetMapping("/public")
-	public void doPublic() {
-		log.info("public");
-	}
-	
-	@GetMapping("/minor")
-	public void doMinor() {
-		log.info("minor");
-	}
 }
