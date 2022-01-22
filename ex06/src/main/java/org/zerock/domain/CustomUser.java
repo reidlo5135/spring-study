@@ -18,6 +18,7 @@ public class CustomUser extends User{
 	
 	public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
+		System.out.println("CustomUser constructor invoked : " + username + ", " + password + ", " + authorities );
 	}
 	
 //	public CustomUser(MemberVO vo) {
@@ -27,12 +28,13 @@ public class CustomUser extends User{
 //		this.member = vo;
 //	}
 	public CustomUser(MemberVO vo) {
-		// 아이디, 비밀번호, 권한 list
 		super(vo.getUserid(), vo.getUserpw(), vo.getAuthList()
 					.stream()
 					.map(auth -> new SimpleGrantedAuthority(auth.getAuth()))
 					.collect(Collectors.toList()));
-
+		
 		this.member = vo;
+		System.out.println("CustomUser MEMBER : " + member);
+		System.out.println("CustomUser VO : " + vo);
 	}
 }
