@@ -8,14 +8,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		var principal = $(".principal").val();
+		console.log(principal);
+	});
+</script>
 </head>
 <body>
 	<h1>ADMIN ADMIN ADMIN</h1>
-	
+	<input type="hidden" value="principal" class="principal"/>
 	<p>principal : <sec:authentication property="principal"/></p>
 	<p>MemberVO : <sec:authentication property="principal.member"/></p>
 	<p>사용자 이름 : <sec:authentication property="principal.member.userName"/></p>
-	<p>사용자 아이디 : <sec:authentication property="principal.member.username"/></p>
+	<p>사용자 아이디 : <sec:authentication property="principal.member.userid"/></p>
 	<p>사용자 권한 리스트 : <sec:authentication property="principal.member.authList"/></p>
 		
 	<a href="${path}/customLogout">LOGOUT</a>
