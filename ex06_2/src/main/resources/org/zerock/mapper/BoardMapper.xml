@@ -5,7 +5,7 @@
 
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
-	<select id="getList" resultType="boardVO">
+	<select id="getList" resultType="org.zerock.domain.BoardVO">
 		<![CDATA[
 			SELECT bno, title, content, writer, regdate, updatedate FROM tbl_board WHERE bno > 0
 		]]>

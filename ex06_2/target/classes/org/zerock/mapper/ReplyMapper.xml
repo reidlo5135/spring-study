@@ -10,7 +10,7 @@
 		VALUES (seq_reply.nextval, #{bno}, #{reply}, #{replyer})
 	</insert>
 	
-	<select id="read" resultType="replyVO">
+	<select id="read" resultType="org.zerock.domain.ReplyVO">
 		SELECT * FROM tbl_reply WHERE rno = #{rno}
 	</select>
 	
@@ -22,7 +22,7 @@
 		UPDATE tbl_reply SET reply = #{reply}, updateDate = SYSDATE WHERE rno = #{rno}
 	</update>
 	
-	<select id="getListWithPaging" resultType="replyVO">
+	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
 		<![CDATA[
 		SELECT rno, bno, reply, replyer, replyDate, updateDate
 		FROM (

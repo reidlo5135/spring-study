@@ -26,9 +26,8 @@
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property value="classpath:/mybatis-config.xml" name="configLocation"></property>
 	</bean>
 	
 	<mybatis-spring:scan base-package="org.zerock.mapper" />
-		
+	<context:component-scan base-package="org.zerock.service"></context:component-scan>		
 </beans>
