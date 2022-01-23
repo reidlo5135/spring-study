@@ -5,10 +5,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +25,6 @@ import org.zerock.domain.PageDTO;
 import org.zerock.service.BoardService;
 
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -65,18 +64,13 @@ public class BoardController {
 	}
 	
 	@GetMapping("/register")
+	@PreAuthorize("isAuthenticated()")
 	public void register() {
 		
 	}
 	
-	@GetMapping("/pagingtest")
-	public void pagingTest(Criteria cri, Model model) {
-		log.info("list");
-		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMarker", new PageDTO(cri, 123));
-	}
-	
 	@PostMapping("/register")
+	@PreAuthorize("isAuthenticated()")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		log.info("register : " + board);
 		
@@ -93,6 +87,13 @@ public class BoardController {
 		rttr.addFlashAttribute("result", board.getBno());
 		
 		return "redirect:/board/list";
+	}
+	
+	@GetMapping("/pagingtest")
+	public void pagingTest(Criteria cri, Model model) {
+		log.info("list");
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("pageMarker", new PageDTO(cri, 123));
 	}
 	
 	@GetMapping({"/get", "/modify"})

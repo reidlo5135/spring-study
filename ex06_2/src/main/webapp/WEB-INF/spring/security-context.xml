@@ -8,8 +8,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<bean id="customAccessDenied" class="org.zerock.security.CustomAccessDeniedHandler" />
-	<bean id="customLoginSuccess" class="org.zerock.security.CustomLoginSuccessHandler"/>
-	<bean id="customLoginFailure" class="org.zerock.security.CustomLoginFailureHandler"/>
+	<!-- <bean id="customLoginSuccess" class="org.zerock.security.CustomLoginSuccessHandler"/>
+	<bean id="customLoginFailure" class="org.zerock.security.CustomLoginFailureHandler"/> -->
 	<bean id="customPasswordEncoder" class="org.zerock.security.CustomNoOpPasswordEncoder"/>
  	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<bean id="customUserDetailsService" class="org.zerock.security.CustomUserDetailsService"/>
@@ -21,10 +21,7 @@
 		<!-- <security:access-denied-handler error-page="/accessError" /> -->
 		<security:access-denied-handler ref="customAccessDenied" />
 		
-		<security:form-login login-page="/customLogin" 
-			authentication-success-handler-ref="customLoginSuccess"
-			authentication-failure-handler-ref="customLoginFailure"
-		/>
+		<security:form-login login-page="/customLogin" />
 		
 		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me. JSESSION_ID"/>
 		
