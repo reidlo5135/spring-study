@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -96,9 +97,14 @@
 								<label>Writer</label>
 								<input class="form-control" name="writer" value='<c:out value="${board.writer}" />' readonly/>
 							</div>
-							<button data-oper='modify' class="btn btn-default">Modify</button>
-							<button data-oper='list' class="btn btn-info">List</button>
 							
+						<sec:authentication property="principal" var="pinfo"/>
+						<sec:authorize access="isAuthentiated()">
+							<c:if test="${pinfo.username eq board.writer}">
+								<button data-oper='modify' class="btn btn-default">Modify</button>
+							</c:if>
+						</sec:authorize>
+						<button data-oper='list' class="btn btn-info">List</button>
 							<form id='operForm' action="${path}/board/modify" method="get">
 								<input type="hidden" id="bno" name="bno" value="<c:out value="${board.bno}"/>" />
 								<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}" />' />
