@@ -99,7 +99,7 @@
 							</div>
 							
 						<sec:authentication property="principal" var="pinfo"/>
-						<sec:authorize access="isAuthentiated()">
+						<sec:authorize access="isAuthenticated()">
 							<c:if test="${pinfo.username eq board.writer}">
 								<button data-oper='modify' class="btn btn-default">Modify</button>
 							</c:if>
@@ -135,7 +135,9 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<i class="fa fa-comments fa-fw">Reply</i>
-							<button id='addReplyBtn' class="btn btn-primary btn-xs pull-right">New Reply</button>
+							<sec:authorize access="isAuthenticated()">
+								<button id='addReplyBtn' class="btn btn-primary btn-xs pull-right">New Reply</button>
+							</sec:authorize>
 						</div>
 						<div class="panel-body">
 							<ul class="chat">
@@ -293,14 +295,28 @@
 		var modalRemoveBtn = $("#modalRemoveBtn");
 		var modalRegisterBtn = $("#modalRegisterBtn");
 		
+		var replyer = null;
+		
+		<sec:authorize access="isAuthenticated()">
+			replyer = '<sec:authentication property="principal.username"/>';
+		</sec:authorize>
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
 		$("#addReplyBtn").on("click", function(e) {
 		   modal.find("input") .val("");
+		   modal.find("input[name='replyer']").val(replyer);
 		   modalInputReplyDate.closest("div").hide();
 		   modal.find("button[id != 'modalCloseBtn']").hide();
 		   
 		   modalRegisterBtn.show();
 		   
 		   $('.modal').modal("show");
+		});
+		
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 		});
 		
 		modalRegisterBtn.on("click", function(e) {
