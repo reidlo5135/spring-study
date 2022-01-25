@@ -320,22 +320,44 @@
 		});
 		
 		modalRegisterBtn.on("click", function(e) {
-		   var reply = {
+			
+		 	var reply = {
 				reply : modalInputReply.val(),
 				replyer : modalInputReplyer.val(),
 				bno : bnoValue
-		   };
-		   replyService.add(reply, function(result){
-		      alert(result);
-		      modal.find("input").val();
-		      modal.modal("hide");
+		   	};
+			replyService.add(reply, function(result){
+		    	alert(result);
+		      	modal.find("input").val();
+		      	modal.modal("hide");
 		      
-		      showList(-1);
-		   });
+		      	showList(-1);
+		   	});
 		});
 		
 		modalModBtn.on("click", function(e) {
-		    var reply = {rno:modal.data("rno"), reply:modalInputReply.val()};
+			
+			var originalReplyer = modalInputReplyer.val();
+			
+		    var reply = {
+		    		rno:modal.data("rno"),
+		    		reply:modalInputReply.val(),
+		    		replyer:originalReplyer
+		    };
+		    
+		    if(!replyer) {
+		    	alert("로그인 후 수정이 가능합니다");
+		    	modal.modal("hide");
+		    	return;
+		    }
+		    
+		    console.log("Orignial Replyer : " + originalReplyer);
+		    
+		    if(replyer != originalReplyer) {
+		    	alert("자신이 작성한 댓글만 수정이 가능합니다");
+		    	modal.modal("hide");
+		    	return;
+		    }
 		    
 		    replyService.update(reply, function(result) {
 				alert(result);
@@ -345,13 +367,31 @@
 		});
 		
 		modalRemoveBtn.on("click", function(e) {
-		   var rno = modal.data("rno");
-		   
-		   replyService.remove(rno, function(result) {
-		      alert(result);
-		      modal.modal("hide");
-		      showList(pageNum);
-		   });
+			var rno = modal.data("rno")	;
+			console.log("RNO : " + rno);
+			console.log("REPLYER : " + replyer);
+			
+			if(!replyer) {
+				alert("로그인 후 삭제가 가능합니다");
+				modal.modal("hide");
+				return;
+			}
+				
+			var originalReplyer = modalInputReplyer.val();
+				
+			console.log("Original Replyer : " + originalReplyer);
+				
+			if(replyer != originalReplyer) {
+				alert("자신이 작성한 댓글만 삭제가 가능합니다");
+				modal.modal("hide");
+				return;
+			}
+				
+			replyService.remove(rno, originalReplyer, function(result) {
+				alert(result);
+				modal.modal("hide");
+				showList(pageNum);
+			});
 		});
 		
 		$(".chat").on("click", "li", function(e) {
