@@ -1,0 +1,6 @@
+org\zerock\persistence\DSTest.class
+org\zerock\persistence\JDBCTests.class
+org\zerock\persistence\MyBatisTest.class
+org\zerock\mapper\ReplyMapperTests.class
+org\zerock\controller\SampleControllerTests.class
+org\zerock\mapper\MapperTests.class
