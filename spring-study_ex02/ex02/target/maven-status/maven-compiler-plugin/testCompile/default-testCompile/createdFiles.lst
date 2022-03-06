@@ -1,0 +1,5 @@
+org\zerock\mapper\BoardMapperTests.class
+org\zerock\controller\BoardControllerTests.class
+org\zerock\service\BoardServiceTests.class
+org\zerock\db\MyBatisTest.class
+org\zerock\db\DbTests.class
