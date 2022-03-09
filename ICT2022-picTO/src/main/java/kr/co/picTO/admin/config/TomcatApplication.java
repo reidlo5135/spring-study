@@ -6,7 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = {"kr.co.picTO.controller"})
+@ComponentScan(basePackages = {"kr.co.picTO.*.*"})
 @SpringBootApplication
 public class TomcatApplication extends SpringBootServletInitializer{
 	
