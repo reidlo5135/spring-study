@@ -10,4 +10,9 @@ public class TestController {
 	public String test() {
 		return "BOOT TEST";
 	}
+
+	@RequestMapping(value = "/api/test2")
+	public String test2() {
+		return "REACT API TEST";
+	}
 }
