@@ -1,17 +1,29 @@
 package kr.co.picTO.member.domain;
 
-import lombok.Data;
+import lombok.*;
 
-import java.sql.Date;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "member")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberVO {
 
-    private int mno;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long mno;
+
+    @Column(name = "id")
     private String id;
-    private String pwd;
+
+    @Column(name = "name")
     private String name;
-    private int age;
-    private Date regDate;
-    private Date updateDate;
+
+    @Builder
+    public MemberVO(String id, String name){
+        this.id = id;
+        this.name = name;
+    }
 }

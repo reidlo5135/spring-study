@@ -1,12 +1,14 @@
 package kr.co.picTO.admin.main;
 
+import kr.co.picTO.admin.config.SpringConfig;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = {"kr.co.picTO.*.*"})
+@ComponentScan(basePackageClasses = SpringConfig.class)
 @SpringBootApplication
 public class TomcatApplication extends SpringBootServletInitializer{
 	
