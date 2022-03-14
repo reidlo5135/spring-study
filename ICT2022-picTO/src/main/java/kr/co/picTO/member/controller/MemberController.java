@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +35,21 @@ public class MemberController {
         mno = 1L;
         Optional<MemberVO> member = mSvc.findById(mno);
         return new ResponseEntity<MemberVO>(member.get(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/member/register")
+    public ResponseEntity<MemberVO> save(MemberVO vo) {
+        return new ResponseEntity<MemberVO>(mSvc.save(vo), HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/{mno}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<MemberVO> updateMember(Long mno, MemberVO vo) {
+        return new ResponseEntity<MemberVO>(vo, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{mno}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Void> deleteMember(Long mno) {
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 	
 }

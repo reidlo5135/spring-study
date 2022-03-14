@@ -19,6 +19,12 @@ public class MemberServiceImpl implements MemberService{
     private MemberRepository repo;
 
     @Override
+    public MemberVO save(MemberVO vo) {
+        repo.save(vo);
+        return vo;
+    }
+
+    @Override
     public List<MemberVO> findAll() {
         List<MemberVO> members = new ArrayList<>();
         repo.findAll().forEach(e -> members.add(e));
@@ -27,18 +33,12 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Optional<MemberVO> findById(Long mno) {
-        Optional<MemberVO> member = repo.findById(mno);
-        return member;
+        Optional<MemberVO> vo = repo.findById(mno);
+        return vo;
     }
 
     @Override
     public Optional<MemberVO> findByName(String name) {
-        return Optional.empty();
-    }
-
-    @Override
-    public MemberVO save(MemberVO vo) {
-        repo.save(vo);
-        return vo;
+        return repo.findByName(name);
     }
 }
