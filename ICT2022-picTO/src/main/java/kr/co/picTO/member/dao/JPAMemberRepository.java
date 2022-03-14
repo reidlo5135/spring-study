@@ -31,7 +31,8 @@ public class JPAMemberRepository implements MemberRepository{
 
     @Override
     public List<MemberVO> findAll() {
-        return null;
+        List<MemberVO> result = em.createQuery("select m from MemberVO m", MemberVO.class).getResultList();
+        return result;
     }
 
 }
