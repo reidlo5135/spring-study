@@ -1,0 +1,7 @@
+[INFO ] 2022-03-15 20:07:27.001 [restartedMain] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-03-15 20:07:27.024 [restartedMain] TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/picTO'
+[INFO ] 2022-03-15 20:07:27.035 [restartedMain] TomcatApplication - Started TomcatApplication in 3.057 seconds (JVM running for 4.151)
+[INFO ] 2022-03-15 20:08:18.967 [http-nio-8080-exec-1] [/picTO] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2022-03-15 20:08:18.968 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2022-03-15 20:08:18.970 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 2 ms
+[INFO ] 2022-03-15 20:17:05.684 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'

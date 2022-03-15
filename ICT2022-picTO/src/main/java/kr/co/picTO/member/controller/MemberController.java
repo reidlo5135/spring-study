@@ -3,6 +3,7 @@ package kr.co.picTO.member.controller;
 import kr.co.picTO.member.domain.MemberVO;
 import kr.co.picTO.member.service.MemberService;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,9 @@ import java.util.Optional;
 
 @RestController("memController")
 @AllArgsConstructor
+@Log4j2
 @RequestMapping(value = "member")
 public class MemberController {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     MemberService mSvc;

@@ -1,0 +1,58 @@
+[INFO ] 2022-03-15 11:32:46.435 [restartedMain] TomcatApplication - Starting TomcatApplication using Java 15.0.2 on Reidlo with PID 7476 (C:\ICT-web-Intel\ICT2022-picTO\build\classes\java\main started by user in C:\ICT-web-Intel\ICT2022-picTO)
+[INFO ] 2022-03-15 11:32:46.446 [restartedMain] TomcatApplication - No active profile set, falling back to 1 default profile: "default"
+[INFO ] 2022-03-15 11:32:46.490 [restartedMain] DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] 2022-03-15 11:32:46.492 [restartedMain] DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] 2022-03-15 11:32:47.097 [restartedMain] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2022-03-15 11:32:47.121 [restartedMain] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 0 JPA repository interfaces.
+[INFO ] 2022-03-15 11:32:47.303 [restartedMain] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'JPAConfig' of type [kr.co.picTO.admin.config.JPAConfig$$EnhancerBySpringCGLIB$$fe51d161] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2022-03-15 11:32:47.733 [restartedMain] TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 2022-03-15 11:32:47.735 [restartedMain] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-03-15 11:32:47.735 [restartedMain] StandardService - Starting service [Tomcat]
+[INFO ] 2022-03-15 11:32:47.748 [restartedMain] StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+[INFO ] 2022-03-15 11:32:47.863 [restartedMain] [/picTO] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2022-03-15 11:32:47.863 [restartedMain] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1370 ms
+[INFO ] 2022-03-15 11:32:47.969 [restartedMain] H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/ict?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul'
+[INFO ] 2022-03-15 11:32:48.039 [restartedMain] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2022-03-15 11:32:48.101 [restartedMain] Version - HHH000412: Hibernate ORM core version 5.6.5.Final
+[INFO ] 2022-03-15 11:32:48.220 [restartedMain] Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 2022-03-15 11:32:48.382 [restartedMain] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[INFO ] 2022-03-15 11:32:48.776 [restartedMain] JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 2022-03-15 11:32:48.798 [restartedMain] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 2022-03-15 11:32:48.918 [restartedMain] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2022-03-15 11:32:49.237 [restartedMain] OptionalLiveReloadServer - LiveReload server is running on port 35729
+[INFO ] 2022-03-15 11:32:49.263 [restartedMain] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-03-15 11:32:49.315 [restartedMain] TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/picTO'
+[INFO ] 2022-03-15 11:32:49.334 [restartedMain] TomcatApplication - Started TomcatApplication in 3.32 seconds (JVM running for 4.815)
+[INFO ] 2022-03-15 11:32:58.040 [http-nio-8080-exec-1] [/picTO] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2022-03-15 11:32:58.048 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2022-03-15 11:32:58.051 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 2 ms
+[INFO ] 2022-03-15 11:33:10.679 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2022-03-15 20:07:24.309 [restartedMain] TomcatApplication - Starting TomcatApplication using Java 15.0.2 on Reidlo with PID 11788 (C:\ICT-web-Intel\ICT2022-picTO\build\classes\java\main started by user in C:\ICT-web-Intel\ICT2022-picTO)
+[INFO ] 2022-03-15 20:07:24.319 [restartedMain] TomcatApplication - No active profile set, falling back to 1 default profile: "default"
+[INFO ] 2022-03-15 20:07:24.370 [restartedMain] DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] 2022-03-15 20:07:24.370 [restartedMain] DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] 2022-03-15 20:07:24.929 [restartedMain] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2022-03-15 20:07:24.945 [restartedMain] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
+[INFO ] 2022-03-15 20:07:25.110 [restartedMain] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'JPAConfig' of type [kr.co.picTO.admin.config.JPAConfig$$EnhancerBySpringCGLIB$$470d3479] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2022-03-15 20:07:25.423 [restartedMain] TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 2022-03-15 20:07:25.437 [restartedMain] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-03-15 20:07:25.437 [restartedMain] StandardService - Starting service [Tomcat]
+[INFO ] 2022-03-15 20:07:25.438 [restartedMain] StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+[INFO ] 2022-03-15 20:07:25.549 [restartedMain] [/picTO] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2022-03-15 20:07:25.549 [restartedMain] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1178 ms
+[INFO ] 2022-03-15 20:07:25.672 [restartedMain] H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/ict?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul'
+[INFO ] 2022-03-15 20:07:25.770 [restartedMain] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2022-03-15 20:07:25.817 [restartedMain] Version - HHH000412: Hibernate ORM core version 5.6.5.Final
+[INFO ] 2022-03-15 20:07:25.983 [restartedMain] Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 2022-03-15 20:07:26.154 [restartedMain] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[INFO ] 2022-03-15 20:07:26.584 [restartedMain] JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 2022-03-15 20:07:26.591 [restartedMain] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 2022-03-15 20:07:26.718 [restartedMain] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2022-03-15 20:07:26.988 [restartedMain] OptionalLiveReloadServer - LiveReload server is running on port 35729
+[INFO ] 2022-03-15 20:07:27.001 [restartedMain] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-03-15 20:07:27.024 [restartedMain] TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/picTO'
+[INFO ] 2022-03-15 20:07:27.035 [restartedMain] TomcatApplication - Started TomcatApplication in 3.057 seconds (JVM running for 4.151)
+[INFO ] 2022-03-15 20:08:18.967 [http-nio-8080-exec-1] [/picTO] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2022-03-15 20:08:18.968 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2022-03-15 20:08:18.970 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 2 ms
+[INFO ] 2022-03-15 20:17:05.684 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
