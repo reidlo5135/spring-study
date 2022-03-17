@@ -1,10 +1,13 @@
 package kr.co.picTO.admin.config;
 
+import kr.co.picTO.security.repo.MemberRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -20,6 +23,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@Log4j2
+@EnableJpaRepositories(basePackageClasses = MemberRepository.class)
 @PropertySource("classpath:application.properties")
 public class JPAConfig {
 
@@ -38,6 +43,7 @@ public class JPAConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        log.warn(driverClassName);
         dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(url);
         dataSource.setUsername(userName);
@@ -49,7 +55,8 @@ public class JPAConfig {
    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("kr.co.picTO.*.domain");
+        em.setPackagesToScan("kr.co.picTO.admin.security.domain");
+
        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
        em.setJpaVendorAdapter(vendorAdapter);
        em.setJpaProperties(additionalProperties());

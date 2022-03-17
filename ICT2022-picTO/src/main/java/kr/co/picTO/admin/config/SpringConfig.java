@@ -1,43 +1,40 @@
 package kr.co.picTO.admin.config;
 
-import kr.co.picTO.member.controller.MemberController;
-import kr.co.picTO.member.controller.TestController;
-import kr.co.picTO.member.dao.JPAMemberRepository;
-import kr.co.picTO.member.dao.MemberRepository;
-import kr.co.picTO.member.service.MemberService;
-import kr.co.picTO.member.service.MemberServiceImpl;
-import lombok.AllArgsConstructor;
+import kr.co.picTO.admin.config.service.ResponseService;
+import kr.co.picTO.security.controller.MemberController;
+import kr.co.picTO.security.repo.MemberRepository;
+import kr.co.picTO.security.service.MemberService;
+import kr.co.picTO.security.service.SecurityMemberService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 @Configuration
-@AllArgsConstructor
 public class SpringConfig {
 
-    @PersistenceContext
-    private final EntityManager em;
+    private final MemberRepository memberRepository;
 
-    @Bean
-    public TestController testController() {
-        return new TestController();
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
-    public MemberRepository memberRepository() {
-        return new JPAMemberRepository(em);
+    public ResponseService responseService() {
+        return new ResponseService();
     }
 
     @Bean
     public MemberService memberService() {
-        return new MemberServiceImpl(memberRepository());
+        return new MemberService(memberRepository);
     }
 
     @Bean
-    public MemberController memberController() {
-        return new MemberController(memberService());
+    public SecurityMemberService securityMemberService() {
+        return new SecurityMemberService(memberRepository);
+    }
+
+    @Bean
+    public MemberController MemberController() {
+        return new MemberController(memberService(), responseService());
     }
 }

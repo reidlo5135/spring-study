@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Http Json Logger File ###
+.log.*.gz
