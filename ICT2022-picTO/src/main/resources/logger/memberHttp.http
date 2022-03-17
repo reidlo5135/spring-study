@@ -1,5 +1,2 @@
-### Entire Member List
-GET http://localhost:8080/picTO/member
-
-### Get Member Info BY Mno
-GET http://localhost:8080/picTO/member/1
+###
+GET http://localhost:8080/picTO/member/total
