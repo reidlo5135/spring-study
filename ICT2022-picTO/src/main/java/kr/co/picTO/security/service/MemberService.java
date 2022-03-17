@@ -1,11 +1,12 @@
 package kr.co.picTO.security.service;
 
+import kr.co.picTO.admin.advice.exception.EmailLoginFailedCException;
+import kr.co.picTO.admin.advice.exception.EmailSignupFailedCException;
 import kr.co.picTO.admin.advice.exception.UserNotFoundException;
-import kr.co.picTO.security.domain.Member;
-import kr.co.picTO.security.domain.MemberRequestDTO;
-import kr.co.picTO.security.domain.MemberResponseDTO;
+import kr.co.picTO.security.domain.*;
 import kr.co.picTO.security.repo.MemberRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,23 @@ import java.util.stream.Collectors;
 public class MemberService {
 
     private MemberRepository repo;
+    private PasswordEncoder passwordEncoder;
+
+    @Transactional(readOnly = true)
+    public MemberLoginResponseDTO login(String email, String password) {
+        Member member = repo.findByEmail(email);
+        if(member == null) throw new EmailLoginFailedCException();
+        else if(!passwordEncoder.matches(password, member.getPassword()))
+            throw new EmailLoginFailedCException();
+        return new MemberLoginResponseDTO(member);
+    }
+
+    @Transactional
+    public Long signUp(MemberSignUpRequestDTO memberSignUpRequestDTO) {
+        if(repo.findByEmail(memberSignUpRequestDTO.getEmail()) == null)
+            return repo.save(memberSignUpRequestDTO.toEntity()).getId();
+        else throw new EmailSignupFailedCException();
+    }
 
     @Transactional
     public Long save(MemberRequestDTO requestDTO) {

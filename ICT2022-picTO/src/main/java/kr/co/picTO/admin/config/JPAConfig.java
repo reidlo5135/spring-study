@@ -55,7 +55,7 @@ public class JPAConfig {
    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("kr.co.picTO.admin.security.domain");
+        em.setPackagesToScan("kr.co.picTO.security.domain");
 
        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
        em.setJpaVendorAdapter(vendorAdapter);
