@@ -11,11 +11,10 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
 
     private ApiInfo commonInfo() {
-        return new ApiInfoBuilder().title("Spring API Documentation")
+        return new ApiInfoBuilder().title("ICT-2022 PICTO API")
                 .description("앱 서버 API 설명을 위한 문서입니다.")
                 .version("1.0")
                 .build();
@@ -23,13 +22,11 @@ public class SwaggerConfig {
 
     @Bean
     public Docket allApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("USER")
-                .useDefaultResponseMessages(false)
+        return new Docket(DocumentationType.OAS_30)
+                .apiInfo(commonInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("kr.co.picTO.*.controller"))
                 .paths(PathSelectors.any())
-                .build()
-                .apiInfo(commonInfo());
+                .build();
     }
 }

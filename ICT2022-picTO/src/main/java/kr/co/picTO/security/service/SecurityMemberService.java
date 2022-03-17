@@ -46,14 +46,14 @@ public class SecurityMemberService implements UserDetailsService {
         return memberRepository.findById(Long.parseLong(username)).orElseThrow();
     }
 
-    public Member signUpMember(MemberRequestDTO securityMemberDTO) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        securityMemberDTO.setUpwd(bCryptPasswordEncoder.encode(securityMemberDTO.getUpwd()));
-
-        return memberRepository.save(securityMemberDTO.toEntity());
-    }
-
-    public List<Member> findAll() {
-        return memberRepository.findAll();
-    }
+//    public Member signUpMember(MemberRequestDTO securityMemberDTO) {
+//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//        securityMemberDTO.setUpwd(bCryptPasswordEncoder.encode(securityMemberDTO.getUpwd()));
+//
+//        return memberRepository.save(securityMemberDTO.toEntity());
+//    }
+//
+//    public List<Member> findAll() {
+//        return memberRepository.findAll();
+//    }
 }

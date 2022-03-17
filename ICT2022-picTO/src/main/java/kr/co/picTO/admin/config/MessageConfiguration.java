@@ -39,11 +39,11 @@ public class MessageConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    public MessageSource messageSource(@Value("${spring.message.basename}") String basename,
-                                       @Value("${spring.message.encoding}") String encoding) {
+    public MessageSource messageSource(@Value("${spring.messages.basename}") String basename,
+                                       @Value("${spring.messages.encoding}") String encoding) {
 
         YamlMessageSource ms = new YamlMessageSource();
-        ms.setBasename(basename);
+//        ms.setBasename(basename);
         ms.setDefaultEncoding(encoding);
         ms.setAlwaysUseMessageFormat(true);
         ms.setUseCodeAsDefaultMessage(true);
@@ -54,6 +54,7 @@ public class MessageConfiguration implements WebMvcConfigurer {
     private static class YamlMessageSource extends ResourceBundleMessageSource {
         @Override
         protected ResourceBundle doGetBundle(String basename, Locale locale) throws MissingResourceException {
+            logger.info("basename : " + basename + ", locale : " + locale);
             return ResourceBundle.getBundle(basename, locale, YamlResourceBundle.Control.INSTANCE);
         }
     }
