@@ -21,6 +21,7 @@ public class MemberService {
     private MemberRepository repo;
     private PasswordEncoder passwordEncoder;
 
+
     @Transactional(readOnly = true)
     public MemberLoginResponseDTO login(String email, String password) {
         Member member = repo.findByEmail(email);

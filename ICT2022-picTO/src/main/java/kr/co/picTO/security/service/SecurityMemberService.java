@@ -11,16 +11,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@AllArgsConstructor
 @Log4j2
 public class SecurityMemberService implements UserDetailsService {
 
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
 //    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -42,8 +42,10 @@ public class SecurityMemberService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return memberRepository.findById(Long.parseLong(username)).orElseThrow();
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String userPk) throws UsernameNotFoundException {
+        log.info("Security Service : " + userPk);
+        return memberRepository.findById(Long.parseLong(userPk)).orElseThrow();
     }
 
 //    public Member signUpMember(MemberRequestDTO securityMemberDTO) {
