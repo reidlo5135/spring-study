@@ -29,7 +29,7 @@ public class SignController {
 
 
     @ApiOperation(value = "Login", notes = "Login by Email")
-    @GetMapping(value = "/login")
+    @PostMapping(value = "/login")
     public SingleResult<String> login(@ApiParam(value = "Login ID : Email", required = true) @RequestParam String email,
                                       @ApiParam(value = "Login Pwd", required = true) @RequestParam String password) {
 
