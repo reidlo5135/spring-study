@@ -1,8 +1,6 @@
 package kr.co.picTO.security.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import kr.co.picTO.admin.service.ResponseService;
 import kr.co.picTO.admin.domain.CommonResult;
 import kr.co.picTO.admin.domain.ListResult;
@@ -27,6 +25,12 @@ public class MemberController {
     private final ResponseService service;
     private final PasswordEncoder passwordEncoder;
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "X-AUTH-TOKEN",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "Select All members", notes = "Select All members")
     @GetMapping(value = "/total")
     public ListResult<MemberResponseDTO> findAllMembers() {
@@ -34,42 +38,27 @@ public class MemberController {
                 .getListResult(memberService.findAllUser());
     }
 
-    @ApiOperation(value = "Login", notes = "Login by Email")
-    @GetMapping(value = "/login")
-    public SingleResult<String> login(@ApiParam(value = "Login ID : Email", required = true) @RequestParam String email,
-                                      @ApiParam(value = "Login Pwd", required = true) @RequestParam String password) {
-
-        MemberLoginResponseDTO memberLoginResponseDTO = memberService.login(email, password);
-
-        String token = jwtProvider.createToken(String.valueOf(memberLoginResponseDTO.getId()), memberLoginResponseDTO.getRoles());
-        return service.getSingleResult(token);
-    }
-
-    @ApiOperation(value = "SingUp", notes = "Signing Up")
-    @GetMapping(value = "/singUp")
-    public SingleResult<Long> singup(@ApiParam(value = "SignUp Id : Email", required = true) @RequestParam String email,
-                                     @ApiParam(value = "SignUp Password : Password", required = true) @RequestParam String password,
-                                     @ApiParam(value = "SignUP Name : Name", required = true) @RequestParam String name) {
-
-        MemberSignUpRequestDTO memberSignUpRequestDTO = MemberSignUpRequestDTO.builder()
-                .email(email)
-                .password(passwordEncoder.encode(password))
-                .name(name)
-                .build();
-        Long singUpId = memberService.signUp(memberSignUpRequestDTO);
-        return service.getSingleResult(singUpId);
-    }
-
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "X-AUTH-TOKEN",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "get By Id", notes = "get By Id")
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/id/{id}")
     public SingleResult<MemberResponseDTO> findByUserKey(@ApiParam(value = "member ID", required = true) @PathVariable Long id,
                                                          @ApiParam(value = "Language", defaultValue = "ko") @RequestParam String lang) {
         return service
                 .getSingleResult(memberService.findById(id));
     }
-
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "X-AUTH-TOKEN",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "get By Email", notes = "get By Email")
-    @GetMapping(value = "/get/{email}")
+    @GetMapping(value = "/email/{email}")
     public SingleResult<MemberResponseDTO> findByEmail(@ApiParam(value = "member Email", required = true) @PathVariable String email,
                                             @ApiParam(value = "Language", defaultValue = "ko") @RequestParam String lang) {
         return service.getSingleResult(memberService.findByEmail(email));
@@ -86,6 +75,12 @@ public class MemberController {
         return service.getSingleResult(memberService.save(vo));
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "X-AUTH-TOKEN",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "modify member", notes = "modify Member Info")
     @PutMapping(value = "/modify")
     public SingleResult<Long> modify(@ApiParam(value = "member ID", required = true) @RequestParam Long id,
@@ -98,6 +93,12 @@ public class MemberController {
         return service.getSingleResult(memberService.save(vo));
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "X-AUTH-TOKEN",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "member Delete", notes = "delete Member")
     @DeleteMapping(value = "/delete/{id}")
     public CommonResult delete(@ApiParam(value = "delete ID", required = true) @PathVariable Long id) {

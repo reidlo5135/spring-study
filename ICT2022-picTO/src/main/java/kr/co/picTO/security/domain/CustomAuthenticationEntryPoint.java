@@ -20,6 +20,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
             AuthenticationException authException) throws IOException, ServletException {
 
         log.error("authen error : " + authException.getMessage());
+        log.error("cause : " + authException.getCause());
         response.sendRedirect("/picTO/exception/entryPoint");
     }
 }

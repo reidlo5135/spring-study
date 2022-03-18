@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/picTO/signup", "/picTO/login",
                         "/v1/reissue", "/v1/social/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/exception/**").permitAll()
-                .anyRequest().hasRole("MEMBER")
+                .anyRequest().permitAll()
 
 
                 .and()
@@ -72,6 +72,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth.inMemoryAuthentication()
                 .passwordEncoder(encoder)
-                .withUser("reidlo").password("{noop}12").roles("ADMIN");
+                .withUser("naru7922@gmail.com").password("{noop}12").roles("ADMIN");
     }
 }

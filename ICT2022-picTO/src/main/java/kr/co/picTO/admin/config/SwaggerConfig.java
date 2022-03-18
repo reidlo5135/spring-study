@@ -25,7 +25,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(commonInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("kr.co.picTO.*.controller"))
+                .apis(RequestHandlerSelectors.basePackage("kr.co.picTO.security.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
